@@ -5,10 +5,11 @@ import { useState, useEffect } from 'react';
 
 export default function BackgroundEffects() {
   const [isClient, setIsClient] = useState(false);
-  const [particles, setParticles] = useState<any[]>([]);
+  const [particles, setParticles] = useState<Record<string, unknown>[]>([]);
 
   useEffect(() => {
-    setIsClient(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setTimeout(() => setIsClient(true), 0);
     // Reduced particle count for performance (20 -> 12)
     const newParticles = [...Array(12)].map(() => ({
       x: Math.random() * 100 + '%',
@@ -18,7 +19,7 @@ export default function BackgroundEffects() {
       duration: Math.random() * 20 + 20,
       delay: Math.random() * -20
     }));
-    setParticles(newParticles);
+    setTimeout(() => setParticles(newParticles), 0);
   }, []);
 
   return (

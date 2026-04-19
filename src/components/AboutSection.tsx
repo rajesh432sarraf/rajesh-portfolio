@@ -46,7 +46,7 @@ export default function AboutSection() {
                 animate={{ opacity: 1 }}
                 className="text-primary font-mono text-[10px] uppercase tracking-[0.4em] block"
               >
-                // Neural Identity: 0x8FA2
+                {`// Neural Identity: 0x8FA2`}
               </motion.span>
               <h2 className="text-4xl md:text-6xl font-heading leading-tight">
                 Architecting <span className="text-primary italic">Resilient Ecosystems</span>

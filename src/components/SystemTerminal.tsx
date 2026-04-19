@@ -52,13 +52,13 @@ export default function SystemTerminal({ onNavigate }: { onNavigate: (moduleId: 
         break;
 
       case 'open':
-        const module = args[1];
+        const targetModule = args[1];
         const validModules = ['about', 'projects', 'skills', 'timeline', 'code', 'thinking', 'ai', 'contact', 'resume'];
-        if (validModules.includes(module)) {
-          newLogs.push({ text: `Initializing module: ${module}...`, type: 'success' });
-          onNavigate(module);
+        if (validModules.includes(targetModule)) {
+          newLogs.push({ text: `Initializing module: ${targetModule}...`, type: 'success' });
+          onNavigate(targetModule);
         } else {
-          newLogs.push({ text: `Error: Module '${module}' not found. Type 'ls' for list.`, type: 'error' });
+          newLogs.push({ text: `Error: Module '${targetModule}' not found. Type 'ls' for list.`, type: 'error' });
         }
         break;
 

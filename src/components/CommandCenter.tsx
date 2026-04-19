@@ -282,7 +282,7 @@ export default function CommandCenter() {
   );
 }
 
-function NodeItem({ mod, index, onClick }: { mod: any, index: number, onClick: () => void }) {
+function NodeItem({ mod, index, onClick }: { mod: { title: string, icon: React.ElementType, color: string }, index: number, onClick: () => void }) {
   const Icon = mod.icon;
   return (
     <motion.button

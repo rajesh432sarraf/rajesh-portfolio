@@ -3,9 +3,18 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
+type Particle = {
+  x: string;
+  y: string;
+  opacity: number;
+  scale: number;
+  duration: number;
+  delay: number;
+};
+
 export default function BackgroundEffects() {
   const [isClient, setIsClient] = useState(false);
-  const [particles, setParticles] = useState<Record<string, unknown>[]>([]);
+  const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps

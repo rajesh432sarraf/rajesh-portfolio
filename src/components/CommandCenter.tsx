@@ -86,7 +86,7 @@ export default function CommandCenter() {
               <div className="absolute inset-0 bg-gradient-to-tr from-primary via-transparent to-secondary opacity-50 animate-[spin_4s_linear_infinite]" />
               <div className="w-full h-full rounded-[9px] overflow-hidden relative bg-[#1C1C1C]">
                 <img
-                  src="/profile.png"
+                  src="/rajesh-portfolio/profile.png"
                   alt="R"
                   className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-300"
                   onError={(e) => {

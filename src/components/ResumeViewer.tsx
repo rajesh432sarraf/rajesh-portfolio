@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { FileText, Download, ExternalLink, ShieldCheck, Eye, Terminal, Activity, Layers } from 'lucide-react';
 
 export default function ResumeViewer() {
-  const resumeUrl = "/resume.pdf"; 
+  const resumeUrl = "/rajesh-portfolio/resume.pdf"; 
 
   const metadata = [
     { label: "Document Type", value: "PDF / A4", icon: FileText },

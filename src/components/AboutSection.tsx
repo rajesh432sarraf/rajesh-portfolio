@@ -19,7 +19,7 @@ export default function AboutSection() {
               <div className="absolute inset-[2px] rounded-[22px] overflow-hidden bg-[#1C1C1C]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
-                  src="/profile.png" 
+                  src="/rajesh-portfolio/profile.png" 
                   alt="Rajesh Portfolio" 
                   className="w-full h-full object-cover grayscale-[0.2] contrast-[1.1] hover:grayscale-0 transition-all duration-700"
                   onError={(e) => {

@@ -11,7 +11,7 @@ export const portfolioData = {
 
   systemStats: [
     { label: "Availability", value: "Open to Work", color: "text-secondary" },
-    { label: "Location", value: "India (IST)", color: "text-primary" }
+    { label: "Location", value: "India", color: "text-primary" }
   ],
 
   codeIntelligence: {

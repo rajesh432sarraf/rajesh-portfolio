@@ -11,7 +11,7 @@ export const portfolioData = {
 
   systemStats: [
     { label: "Availability", value: "Open to Work", color: "text-secondary" },
-    { label: "Location", value: "India", color: "text-primary" }
+    { label: "Location", value: "India(Hyderabad)", color: "text-primary" }
   ],
 
   codeIntelligence: {
@@ -66,7 +66,7 @@ export const portfolioData = {
       timestamp: "2024.VISION"
     }
   ],
-  
+
   projects: [
     {
       id: "findna",

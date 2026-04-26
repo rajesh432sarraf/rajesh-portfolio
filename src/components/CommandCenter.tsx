@@ -298,10 +298,6 @@ function NodeItem({ mod, index, onClick }: { mod: { title: string, icon: React.E
       </div>
       <div className="text-left">
         <h3 className="text-xs font-mono uppercase tracking-widest text-muted group-hover:text-primary transition-colors">{mod.title}</h3>
-        <div className="flex items-center gap-2 mt-1">
-          <div className="w-1 h-1 rounded-full bg-primary/40" />
-          <span className="text-[9px] font-mono text-muted/60 uppercase">Node_{index.toString().padStart(2, '0')}</span>
-        </div>
       </div>
       <div className="absolute inset-0 rounded-xl bg-primary/0 group-hover:bg-primary/[0.02] transition-colors" />
       <div className="absolute -inset-[1px] rounded-xl bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity blur-[2px]" />

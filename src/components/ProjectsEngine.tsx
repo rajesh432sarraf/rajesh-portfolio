@@ -78,9 +78,26 @@ export default function ProjectsEngine() {
                       View Schematic <Cpu size={14} />
                     </button>
                   )}
-                  <button className="flex items-center gap-2 px-6 py-2.5 rounded-full glass border-white/10 text-sm hover:bg-white/5 transition-colors">
-                    Source <Github size={14} />
-                  </button>
+                  {project.liveUrl && (
+                    <a 
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-secondary/80 text-[#1C1C1C] font-bold text-sm hover:scale-105 transition-transform shadow-lg shadow-secondary/20"
+                    >
+                      Launch System <ExternalLink size={14} />
+                    </a>
+                  )}
+                  {project.githubUrl && (
+                    <a 
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-6 py-2.5 rounded-full glass border-white/10 text-sm hover:bg-white/5 transition-colors"
+                    >
+                      Source Code <Github size={14} />
+                    </a>
+                  )}
                 </div>
               </div>
 

@@ -11,7 +11,7 @@ export const portfolioData = {
 
   systemStats: [
     { label: "Availability", value: "Open to Work", color: "text-secondary" },
-    { label: "Location", value: "India(Hyderabad)", color: "text-primary" }
+    { label: "Location", value: "India(Andhra Pradesh)", color: "text-primary" }
   ],
 
   codeIntelligence: {
@@ -77,6 +77,8 @@ export const portfolioData = {
       approach: "Built a high-performance analytics platform using Next.js and secure Python middleware.",
       tech: ["Next.js", "Python", "Supabase", "Prisma"],
       features: ["Predictive inflation engine", "Dynamic risk profiling", "Secure cloud sync"],
+      liveUrl: "https://findna.vercel.app", // Placeholder, update as needed
+      githubUrl: "https://github.com/rajesh432sarraf/findna",
       schematic: {
         architecture: "Distributed Middleware with Python Real-time indexing",
         challenges: ["Complex inflation indexing", "High-concurrency planning triggers"],
@@ -95,6 +97,8 @@ export const portfolioData = {
       approach: "Distributed system architecture with real-time state synchronization.",
       tech: ["React", "PostgreSQL", "Node.js", "Tailwind"],
       features: ["Enterprise user management", "Real-time sync", "Modular architecture"],
+      liveUrl: "https://vignan-verse.vercel.app", // Placeholder, update as needed
+      githubUrl: "https://github.com/rajesh432sarraf/vignan-verse",
       schematic: {
         architecture: "Modular Multi-tenant Architecture",
         challenges: ["Data isolation between entities", "High-frequency state sync"],
@@ -113,6 +117,8 @@ export const portfolioData = {
       approach: "AI/IoT integration with real-time analytics for safety automation.",
       tech: ["Python", "React", "IoT APIs", "Mapbox"],
       features: ["Real-time node tracking", "Emergency protocols", "Predictive alerts"],
+      liveUrl: "https://tourist-safety.vercel.app", // Placeholder, update as needed
+      githubUrl: "https://github.com/rajesh432sarraf/tourist-safety",
       schematic: {
         architecture: "AI-Augmented IoT Ingestion Pipeline",
         challenges: ["Heterogeneous IoT data streams", "Real-time alert latency"],
@@ -131,6 +137,8 @@ export const portfolioData = {
       approach: "Integrating LLM-driven verification pipelines into developer workflows.",
       tech: ["TypeScript", "Node.js", "GPT-API"],
       features: ["Structural drift analysis", "Clean code verification", "Security audit"],
+      liveUrl: "https://code-reviewer.vercel.app", // Placeholder, update as needed
+      githubUrl: "https://github.com/rajesh432sarraf/codereviewer",
       color: "from-secondary/20 to-transparent",
       icon: Code
     }

@@ -20,6 +20,28 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "RajeshOS | Developer Operating System",
   description: "A premium developer portfolio showcasing system thinking, AI reasoning, and modular software engineering.",
+  openGraph: {
+    title: "RajeshOS | Developer Operating System",
+    description: "A premium developer portfolio showcasing system thinking, AI reasoning, and modular software engineering.",
+    url: "https://rajeshos.com",
+    siteName: "RajeshOS",
+    images: [
+      {
+        url: "/rajesh-portfolio/profile.png",
+        width: 800,
+        height: 600,
+        alt: "RajeshOS Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RajeshOS | Developer Operating System",
+    description: "A premium developer portfolio showcasing system thinking, AI reasoning, and modular software engineering.",
+    images: ["/rajesh-portfolio/profile.png"],
+  },
 };
 
 export default function RootLayout({

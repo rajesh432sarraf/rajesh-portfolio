@@ -1,6 +1,8 @@
 'use client';
 // Force system-wide HMR refresh: 2026-04-19T16:15:00
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   BarChart3,
@@ -43,13 +45,24 @@ const modules = [
 ];
 
 export default function CommandCenter() {
-  const [activeWindow, setActiveWindow] = useState<ModuleId>(null);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const activeWindow = (searchParams.get('window') as ModuleId) || null;
   const [isMaximized, setIsMaximized] = useState(false);
+
+  const handleWindowChange = (id: ModuleId | null) => {
+    if (id) {
+      router.push(`/?window=${id}`, { scroll: false });
+    } else {
+      router.push('/', { scroll: false });
+    }
+  };
 
   const toggleMaximize = () => setIsMaximized(!isMaximized);
 
   const handleClose = () => {
-    setActiveWindow(null);
+    handleWindowChange(null);
     setIsMaximized(false);
   };
 
@@ -64,7 +77,7 @@ export default function CommandCenter() {
       case 'ai': return <AIInteraction />;
       case 'contact': return <ContactInterface />;
       case 'resume': return <ResumeViewer />;
-      case 'terminal': return <SystemTerminal onNavigate={(id) => setActiveWindow(id as ModuleId)} />;
+      case 'terminal': return <SystemTerminal onNavigate={(id) => handleWindowChange(id as ModuleId)} />;
       default: return null;
     }
   };
@@ -78,15 +91,17 @@ export default function CommandCenter() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             className="group relative cursor-pointer"
-            onClick={() => setActiveWindow('about')}
+            onClick={() => handleWindowChange('about')}
             role="button"
           >
             <div className="w-14 h-14 rounded-xl overflow-hidden relative p-[2px] bg-white/5 border border-white/10 group-hover:border-primary/60 transition-all duration-300">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary via-transparent to-secondary opacity-50 animate-[spin_4s_linear_infinite]" />
               <div className="w-full h-full rounded-[9px] overflow-hidden relative bg-[#1C1C1C]">
-                <img
+                <Image
                   src="/rajesh-portfolio/profile.png"
                   alt="R"
+                  width={56}
+                  height={56}
                   className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-300"
                   onError={(e) => {
                     (e.target as HTMLImageElement).parentElement!.innerHTML = '<span class="text-primary font-heading font-bold text-2xl flex items-center justify-center h-full">R</span>';
@@ -120,7 +135,7 @@ export default function CommandCenter() {
 
       {/* System Node Map */}
       <div className="flex-1 relative overflow-hidden flex flex-col items-center justify-center -mt-8">
-        <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20">
+        <svg className="hidden md:block absolute inset-0 w-full h-full pointer-events-none opacity-20">
           <path d="M 200 300 L 400 200" stroke="currentColor" strokeWidth="1" strokeDasharray="5,5" className="text-primary/20" />
           <path d="M 200 450 L 400 550" stroke="currentColor" strokeWidth="1" strokeDasharray="5,5" className="text-primary/20" />
           <path d="M 400 200 L 700 300" stroke="currentColor" strokeWidth="1" strokeDasharray="5,5" className="text-primary/20" />
@@ -132,17 +147,17 @@ export default function CommandCenter() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-x-24 md:gap-y-16 relative z-10 p-4 max-w-7xl w-full">
           <div className="space-y-8 flex flex-col justify-center">
             {modules.slice(0, 2).map((mod, i) => (
-              <NodeItem key={mod.id} mod={mod} index={i} onClick={() => setActiveWindow(mod.id as ModuleId)} />
+              <NodeItem key={mod.id} mod={mod} index={i} onClick={() => handleWindowChange(mod.id as ModuleId)} />
             ))}
           </div>
           <div className="space-y-8 md:translate-y-12">
             {modules.slice(2, 5).map((mod, i) => (
-              <NodeItem key={mod.id} mod={mod} index={i + 2} onClick={() => setActiveWindow(mod.id as ModuleId)} />
+              <NodeItem key={mod.id} mod={mod} index={i + 2} onClick={() => handleWindowChange(mod.id as ModuleId)} />
             ))}
           </div>
           <div className="space-y-8 flex flex-col justify-center">
             {modules.slice(5, 9).map((mod, i) => (
-              <NodeItem key={mod.id} mod={mod} index={i + 5} onClick={() => setActiveWindow(mod.id as ModuleId)} />
+              <NodeItem key={mod.id} mod={mod} index={i + 5} onClick={() => handleWindowChange(mod.id as ModuleId)} />
             ))}
           </div>
         </div>
@@ -163,7 +178,7 @@ export default function CommandCenter() {
           {modules.slice(0, 4).map((mod) => (
             <button
               key={mod.id}
-              onClick={() => setActiveWindow(mod.id as ModuleId)}
+              onClick={() => handleWindowChange(mod.id as ModuleId)}
               className={`hover:text-primary transition-colors ${activeWindow === mod.id ? 'text-primary' : 'text-muted'}`}
             >
               {(() => {
@@ -176,7 +191,7 @@ export default function CommandCenter() {
           {modules.slice(4).map((mod) => (
             <button
               key={mod.id}
-              onClick={() => setActiveWindow(mod.id as ModuleId)}
+              onClick={() => handleWindowChange(mod.id as ModuleId)}
               className={`hover:text-primary transition-colors ${activeWindow === mod.id ? 'text-primary' : 'text-muted'}`}
             >
               {(() => {

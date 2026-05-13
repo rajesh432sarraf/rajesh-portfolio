@@ -11,7 +11,7 @@ export const portfolioData = {
 
   systemStats: [
     { label: "Availability", value: "Open to Work", color: "text-secondary" },
-    { label: "Location", value: "India(Andhra Pradesh)", color: "text-primary" }
+    { label: "Location", value: "India(Guntur(AP))", color: "text-primary" }
   ],
 
   codeIntelligence: {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import BootScreen from '../components/BootScreen';
 import CommandCenter from '../components/CommandCenter';
@@ -16,7 +16,9 @@ export default function Home() {
         {booting ? (
           <BootScreen key="boot" onComplete={() => setBooting(false)} />
         ) : (
-          <CommandCenter key="dashboard" />
+          <Suspense fallback={null}>
+            <CommandCenter key="dashboard" />
+          </Suspense>
         )}
       </AnimatePresence>
 

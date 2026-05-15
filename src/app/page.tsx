@@ -1,20 +1,32 @@
 'use client';
 
-import { useState, Suspense } from 'react';
+import { useState, Suspense, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import BootScreen from '../components/BootScreen';
 import CommandCenter from '../components/CommandCenter';
 import BackgroundEffects from '../components/BackgroundEffects';
 
-export default function Home() {
-  const [booting, setBooting] = useState(true);
+// Use a module-level variable to persist the boot state across soft navigations.
+// Next.js App Router may remount the page component on search param changes.
+let hasBootedGlobal = false;
 
+export default function Home() {
+  const [booting, setBooting] = useState(!hasBootedGlobal);
+
+  const handleBootComplete = () => {
+    hasBootedGlobal = true;
+    setBooting(false);
+  };
+
+  // Also backup with sessionStorage in case of a hard reload but we still want to skip it?
+  // Usually, a hard reload should show the boot screen again, so global variable is better.
+  
   return (
     <main className="min-h-screen bg-[#1C1C1C] text-[#F5F5F5] selection:bg-primary/30 selection:text-primary">
       <BackgroundEffects />
       <AnimatePresence mode="wait">
         {booting ? (
-          <BootScreen key="boot" onComplete={() => setBooting(false)} />
+          <BootScreen key="boot" onComplete={handleBootComplete} />
         ) : (
           <Suspense fallback={null}>
             <CommandCenter key="dashboard" />
@@ -27,3 +39,4 @@ export default function Home() {
     </main>
   );
 }
+

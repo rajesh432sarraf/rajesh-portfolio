@@ -1,5 +1,4 @@
 'use client';
-// Force Refresh: 2026-04-19T15:33:00
 
 import { motion } from 'framer-motion';
 import { Mail, Send, Copy, ArrowUpRight } from 'lucide-react';
@@ -33,95 +32,67 @@ export default function ContactInterface() {
     }
   };
 
-  const getColor = (name: string) => {
-    switch (name.toLowerCase()) {
-      case 'email': return "text-primary";
-      case 'github': return "text-white";
-      case 'linkedin': return "text-[#0077B5]";
-      default: return "text-primary";
-    }
-  };
-
   return (
-    <div className="max-w-6xl mx-auto space-y-8 py-4">
+    <div className="max-w-4xl mx-auto space-y-12 py-8">
       {/* 01. INTRO SECTION */}
-      <section className="space-y-6">
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] uppercase font-mono tracking-widest"
-        >
-          Comms Interface
-        </motion.div>
-        <div className="space-y-4">
-          <h2 className="text-4xl md:text-5xl font-heading leading-tight italic">
-            Let’s build <span className="text-primary not-italic">something meaningful</span> through technology.
-          </h2>
-          <p className="text-lg text-muted font-light leading-relaxed max-w-3xl">
-            I am always open to discussing system architecture, AI research, or potential collaborations on high-impact software projects.
-          </p>
-        </div>
+      <section className="text-center space-y-6">
+        <h3 className="text-4xl md:text-5xl font-heading font-bold text-foreground drop-shadow-sm">
+          Let’s build <span className="text-transparent bg-clip-text bg-gradient-to-r from-mesh-1 to-mesh-2 italic drop-shadow-sm">something meaningful.</span>
+        </h3>
+        <p className="text-lg text-foreground/80 max-w-2xl mx-auto font-medium">
+          I am always open to discussing system architecture, engineering challenges, or potential collaborations on high-impact software projects.
+        </p>
       </section>
 
-      {/* 02. CONTACT GRID */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start pt-4">
-        {/* Left Side: Pulse Status */}
-        <div className="p-6 glass rounded-2xl border-white/5 bg-white/[0.01]">
-          <div className="flex items-center gap-4 text-primary mb-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
-            <span className="text-[10px] font-mono uppercase tracking-[0.3em]">Status: Ready for Transmission</span>
-          </div>
-          <p className="text-sm text-muted">Response latency expected: &lt; 24 hours</p>
-        </div>
-
-        {/* Right Side: Contact Links */}
-        <div className="space-y-4">
-          {social.map((link, i) => {
-            const Icon = getIcon(link.name);
-            const colorClass = getColor(link.name);
-            
-            return (
-              <motion.div
-                key={link.name}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="group relative"
-              >
-                <div className="absolute inset-0 bg-primary/5 blur-xl group-hover:bg-primary/10 transition-colors rounded-2xl -z-10" />
-                <div className="glass rounded-2xl p-6 border-white/5 flex items-center justify-between hover:border-primary/30 transition-all duration-300">
-                  <div className="flex items-center gap-4">
-                    <div className={`p-3 rounded-xl bg-white/5 ${colorClass}`}>
-                      <Icon size={20} />
-                    </div>
-                    <div>
-                      <h3 className="text-xs font-mono uppercase tracking-widest text-muted mb-1">{link.name}</h3>
-                      <p className="text-sm font-medium">{link.value}</p>
-                    </div>
+      {/* 02. CONTACT CARDS */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+        {social.map((link, i) => {
+          const Icon = getIcon(link.name);
+          
+          return (
+            <motion.div
+              key={link.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              viewport={{ once: true }}
+              className="glass-panel rounded-3xl p-8 flex flex-col justify-between items-start gap-6 group relative overflow-hidden"
+            >
+              {/* Subtle hover gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-mesh-1/10 to-mesh-4/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              
+              <div className="w-full flex items-center justify-between relative z-10">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 rounded-2xl bg-white/40 border border-white/50 text-foreground group-hover:text-white group-hover:bg-gradient-to-br from-mesh-1 to-mesh-3 transition-all duration-300 shadow-sm">
+                    <Icon size={24} />
                   </div>
-                  
-                  <div className="flex gap-2">
-                    <button 
-                      onClick={() => copyToClipboard(link.value)}
-                      className="p-2.5 rounded-xl hover:bg-white/5 text-muted hover:text-primary transition-all active:scale-95"
-                      title="Copy to clipboard"
-                    >
-                      {copied === link.value ? <span className="text-[10px] font-mono text-primary">COPIED</span> : <Copy size={16} />}
-                    </button>
-                    <a 
-                      href={link.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl hover:bg-white/5 text-muted hover:text-primary transition-all active:scale-95"
-                    >
-                      <ArrowUpRight size={18} />
-                    </a>
+                  <div>
+                    <h3 className="text-sm font-bold text-foreground drop-shadow-sm mb-1">{link.name}</h3>
+                    <p className="text-sm text-foreground/70 font-medium">{link.value}</p>
                   </div>
                 </div>
-              </motion.div>
-            );
-          })}
-        </div>
+              </div>
+              
+              <div className="w-full flex gap-3 pt-6 border-t border-white/30 relative z-10">
+                <button 
+                  onClick={() => copyToClipboard(link.value)}
+                  className="flex-1 flex justify-center items-center gap-2 px-4 py-2.5 rounded-xl bg-white/40 border border-white/50 text-sm font-bold shadow-sm hover:bg-white/60 transition-colors"
+                  title="Copy to clipboard"
+                >
+                  {copied === link.value ? <span className="text-mesh-1">Copied!</span> : <><Copy size={16} /> Copy</>}
+                </button>
+                <a 
+                  href={link.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex justify-center items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-mesh-1 to-mesh-3 text-white text-sm font-bold shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_30px_rgba(139,92,246,0.5)] transition-all hover:-translate-y-0.5"
+                >
+                  <ArrowUpRight size={16} /> Visit
+                </a>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
